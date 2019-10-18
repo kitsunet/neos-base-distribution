@@ -26,9 +26,10 @@
         "neos/redirecthandler-neosadapter": "~4.0",
         "neos/redirecthandler-databasestorage": "~4.0",
         "neos/redirecthandler-ui": "~2.0",
-        
+
         "neos/setup": "^4.1",
-        "neos/neos-setup": "^1.0"
+        "neos/neos-setup": "^1.0",
+        "composer/composer": "^1.9"
     },
     "require-dev": {
         "neos/buildessentials": "^6.0",
@@ -43,6 +44,11 @@
             "url": "./DistributionPackages/*"
         }
     },
+    "autoload": {
+        "psr-4": {
+            "Neos\\BaseDistribution\\": "Build/Classes/"
+        }
+    },
     "replace": {
         "neos/neos-base-distribution": "self.version"
     },
@@ -53,6 +59,7 @@
         "post-update-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-install-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
         "post-package-update": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
-        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
+        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
+        "post-create-project-cmd": "Neos\\BaseDistribution\\Composer\\InstallSitePackage::setupDistribution"
     }
 }
